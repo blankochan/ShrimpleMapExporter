@@ -10,6 +10,13 @@ namespace GizmoTest;
 
 public class MapExporter : MelonMod
 {
+    public override void OnEarlyInitializeMelon()
+    {
+
+        if (Application.buildGUID is "4c29d92a2ace4dd58a608f435fe214bd" or "49bf2d45f34840c3a6b67ebe9e56799a")
+            // the maps in beta 5 dont load right, this covers the first build and the hotfix
+            this.Unregister("Beta 5 maps dont export correctly to beta 4 and are unsupported");
+    }
     public override void OnSceneWasInitialized(int buildIndex, string sceneName)
     {
         if (sceneName is not "Splashes") return;
